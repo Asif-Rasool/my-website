@@ -3,12 +3,14 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import sharp from 'sharp';
+import pngToIco from 'png-to-ico';
 
 const root = process.cwd();
 const pubDir = path.join(root, 'public');
 const srcDir = path.join(root, 'src', 'assets');
 
 const candidates = [
+  path.join(pubDir, 'favicon-source.svg'),
   path.join(pubDir, 'favicon-source.png'),
   path.join(pubDir, 'favicon.png'),
   path.join(srcDir, 'asifrasool-logo.png'),
@@ -31,15 +33,27 @@ const outputs = [
   { name: 'favicon.png', size: 512 },
 ];
 
-const PAD = 0.08; // 8% safe area padding for maskable shapes
+// Padding per size to maximize legibility at tiny sizes
+const PAD_DEFAULT = 0.06;
+const PAD_BY_SIZE = new Map([
+  [16, 0.02],
+  [32, 0.04],
+  [180, 0.06],
+]);
+
+// Dark brand background used to fill the outer canvas so no white rim appears
+const DARK_BG = { r: 11, g: 45, b: 79, alpha: 1 }; // #0b2d4f
 
 async function main() {
   const meta = await sharp(input).metadata();
   const hasAlpha = Boolean(meta.hasAlpha);
 
   for (const { name, size } of outputs) {
-    const bg = hasAlpha ? { r: 0, g: 0, b: 0, alpha: 0 } : { r: 255, g: 255, b: 255, alpha: 1 };
-    const inner = Math.round(size * (1 - PAD * 2));
+    // Always use dark background to the canvas edge for consistent dark favicon
+    // (the source may have its own background too; this avoids a white border from padding)
+    const bg = DARK_BG;
+    const pad = PAD_BY_SIZE.get(size) ?? PAD_DEFAULT;
+    const inner = Math.round(size * (1 - pad * 2));
 
     // Create square canvas and place contained logo with padding
     const canvas = sharp({
@@ -62,6 +76,15 @@ async function main() {
     console.log('Wrote', path.relative(root, outPath));
   }
 
+  // Build multi-size ICO for broad compatibility
+  const icoPath = path.join(pubDir, 'favicon.ico');
+  const icoBuf = await pngToIco([
+    path.join(pubDir, 'favicon-16x16.png'),
+    path.join(pubDir, 'favicon-32x32.png'),
+  ]);
+  fs.writeFileSync(icoPath, icoBuf);
+  console.log('Wrote', path.relative(root, icoPath));
+
   console.log('Icon generation complete.');
 }
 
@@ -69,4 +92,3 @@ main().catch((err) => {
   console.error(err);
   process.exit(1);
 });
-

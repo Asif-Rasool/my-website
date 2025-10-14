@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import logoWordmark from "../assets/asifrasool-logo.svg";
+import logoWordmark from "../assets/asifrasool-logo.png";
 
 const NAV_ITEMS = [
   { to: "/", label: "Home", end: true },
@@ -18,9 +18,9 @@ export default function SiteHeader() {
     <header className="site-header">
       <a className="skip-to-content" href="#main-content">Skip to main content</a>
       <div className="container header-inner">
-        <div className="brand">
-          <NavLink to="/" className="brand-mark" aria-label="AsifRasool.net home">
-            <img src={logoWordmark} alt="AsifRasool.net" className="brand-mark__image" />
+        <div className="brand brand--image">
+          <NavLink to="/" className="brand-logo" aria-label="AsifRasool.net home">
+            <img src={logoWordmark} alt="AsifRasool.net" className="brand-logo__img" />
           </NavLink>
         </div>
         <nav className="nav-links" aria-label="Primary">

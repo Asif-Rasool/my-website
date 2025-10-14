@@ -16,14 +16,22 @@ export default function ScrollToTopButton() {
     return null;
   }
 
+  const scrollToTop = () => {
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    window.scrollTo({ top: 0, behavior: prefersReduced ? "auto" : "smooth" });
+  };
+
   return (
     <button
       type="button"
       className="scroll-top"
-      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      onClick={scrollToTop}
       aria-label="Scroll to top"
     >
-      ↑
+      <span aria-hidden>↑</span>
     </button>
   );
 }
+

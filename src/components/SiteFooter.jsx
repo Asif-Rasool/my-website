@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import logoWordmark from "../assets/asifrasool-logo.svg";
+import logoWordmark from "../assets/asifrasool-logo.png";
 
 const FOOTER_LINK_GROUPS = [
   {
