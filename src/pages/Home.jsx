@@ -26,7 +26,7 @@ export default function Home() {
               I am a Research Scientist at Southeastern Louisiana University's Business Research Center (BRC), where I research, build, and develop tools to support local government agencies, businesses, and other stakeholders in conducting research studies and building models.
             </p>
             <p>
-              Outside of work, I live near New Orleans, have a cat named Razor, and one wife (who is smarter than me, please do not tell her that!).
+              Outside of work, I live near New Orleans, have one cat named Razor, and one wife (who is smarter than me, please do not tell her that!).
             </p>
             {/* Buttons removed in favor of navigation tiles below */}
           </div>
