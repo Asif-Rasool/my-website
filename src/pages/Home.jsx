@@ -28,69 +28,86 @@ export default function Home() {
             <p>
               Outside of work, I live near New Orleans, have a cat named Razor, and one wife (who is smarter than me, please do not tell her that!).
             </p>
-            <div className="hero-actions">
-              <NavLink className="pill-button" to="/experience">
-                View Experience
-              </NavLink>
-              <NavLink className="pill-button subtle-button" to="/chat-with-razor">
-                Chat with rAI-zor
-              </NavLink>
-            </div>
+            {/* Buttons removed in favor of navigation tiles below */}
           </div>
-        </div>
-
-        <div className="section-heading">
-          <div>
-            <h2>What you will find here</h2>
-            <p>
-              Each section mirrors the way your work is organized on LinkedIn—roles, projects, thought leadership, and advisory offerings—wrapped in the polished look and feel of our dashboard builds.
-            </p>
-          </div>
-        </div>
-        <div className="card-grid card-grid--three">
-          <article className="elevated-card">
-            <h3>Experience timeline</h3>
-            <p>
-              Showcase your headline roles with context, impact metrics, and standout initiatives drawn directly from your LinkedIn experience section.
-            </p>
-          </article>
-          <article className="elevated-card">
-            <h3>Signature projects</h3>
-            <p>
-              Capture the product launches, innovation pilots, and community programs you champion, ready for links and rich media.
-            </p>
-          </article>
-          <article className="elevated-card">
-            <h3>Thought leadership</h3>
-            <p>
-              Surface articles, talks, and podcasts so visitors see your perspective on AI, operations, and workforce development at a glance.
-            </p>
-          </article>
         </div>
       </section>
 
       <section className="page-section">
-        <div className="section-heading">
+        <div className="section-heading section-heading--center">
           <div>
-            <h2>Current focus areas</h2>
-            <p>
-              Keep these cards in sync with the priorities you spotlight on LinkedIn—update them as your portfolio evolves.
-            </p>
+            <h2>Navigation</h2>
+            
           </div>
         </div>
-        <div className="card-grid">
-          <article className="elevated-card">
-            <h3>AI & analytics strategy</h3>
-            <p>
-              Summarize how you guide teams through responsible adoption, governance, and measurable impact.
-            </p>
-          </article>
-          <article className="elevated-card">
-            <h3>Community and partnerships</h3>
-            <p>
-              Highlight collaborations, mentorship initiatives, or cross-industry alliances that reflect your leadership footprint.
-            </p>
-          </article>
+        <div className="card-grid nav-tiles">
+          <NavLink className="elevated-card nav-tile" to="/experience">
+            <h3>Experience</h3>
+            <p>Roles, impact, and highlights across programs and teams.</p>
+          </NavLink>
+          <NavLink className="elevated-card nav-tile" to="/projects">
+            <h3>Projects</h3>
+            <p>Product launches, pilots, and analytics builds with outcomes.</p>
+          </NavLink>
+          <NavLink className="elevated-card nav-tile" to="/speaking">
+            <h3>Speaking</h3>
+            <p>Talks and panels on applied AI, data strategy, and leadership.</p>
+          </NavLink>
+          <NavLink className="elevated-card nav-tile" to="/insights">
+            <h3>Insights</h3>
+            <p>Articles and notes capturing methods, playbooks, and lessons.</p>
+          </NavLink>
+          <NavLink className="elevated-card nav-tile" to="/advisory">
+            <h3>Advisory</h3>
+            <p>How I help teams adopt AI and analytics with measurable value.</p>
+          </NavLink>
+          <NavLink className="elevated-card nav-tile" to="/mentorship">
+            <h3>Mentorship</h3>
+            <p>Guidance for students and professionals growing in applied AI.</p>
+          </NavLink>
+          <NavLink className="elevated-card nav-tile" to="/newsletter">
+            <h3>Newsletter</h3>
+            <p>Occasional updates on projects, tools, and community efforts.</p>
+          </NavLink>
+          <NavLink className="elevated-card nav-tile" to="/chat-with-razor">
+            <h3>Chat with rAI-zor</h3>
+            <p>Ask my AI assistant about my work, projects, and approach.</p>
+          </NavLink>
+        </div>
+      </section>
+
+      <section className="page-section">
+        <div className="section-heading section-heading--center">
+          <div>
+            <h2>Social & anti-social media</h2>
+            <p>Find me around the web.</p>
+          </div>
+        </div>
+        <div className="card-grid social-grid">
+          <a className="elevated-card social-tile" href="https://www.linkedin.com/in/asif-rasool-is-here/" target="_blank" rel="noopener noreferrer">
+            <img src="/linkedin.png" alt="LinkedIn" className="social-tile__icon" />
+            <span className="social-tile__label">LinkedIn</span>
+          </a>
+          <a className="elevated-card social-tile" href="/CV%20of%20Asif%20Rasool%20for%20Evaluation.docx" target="_blank" rel="noopener noreferrer">
+            <img src="/cv.png" alt="Curriculum Vitae" className="social-tile__icon" />
+            <span className="social-tile__label">Curriculum Vitae</span>
+          </a>
+          <a className="elevated-card social-tile" href="https://github.com/Asif-Rasool" target="_blank" rel="noopener noreferrer">
+            <img src="/github.png" alt="GitHub" className="social-tile__icon" />
+            <span className="social-tile__label">GitHub</span>
+          </a>
+          <a className="elevated-card social-tile" href="https://scholar.google.com/citations?user=rd3ut40AAAAJ&hl=en&authuser=1" target="_blank" rel="noopener noreferrer">
+            <img src="/googlescholar.png" alt="Google Scholar" className="social-tile__icon" />
+            <span className="social-tile__label">Google Scholar</span>
+          </a>
+          <NavLink className="elevated-card social-tile" to="/newsletter">
+            <img src="/news%20letter.png" alt="Newsletter" className="social-tile__icon" />
+            <span className="social-tile__label">Newsletter</span>
+          </NavLink>
+          <a className="elevated-card social-tile" href="https://www.southeastern.edu/employee/asif-rasool/" target="_blank" rel="noopener noreferrer">
+            <img src="/workwebste.png" alt="Work Website" className="social-tile__icon" />
+            <span className="social-tile__label">Work Website</span>
+          </a>
         </div>
       </section>
     </div>

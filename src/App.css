@@ -303,6 +303,11 @@ select:focus-visible {
   margin-bottom: 24px;
 }
 
+.section-heading--center {
+  justify-content: center;
+  text-align: center;
+}
+
 /* Intro split layout (portrait left, content right) */
 .intro-split { display: grid; gap: 28px; align-items: start; }
 
@@ -353,6 +358,48 @@ select:focus-visible {
 .card-grid {
   display: grid;
   gap: 20px;
+}
+
+/* Home navigation tiles */
+.nav-tiles {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.nav-tile {
+  text-decoration: none;
+  color: var(--text);
+  display: block;
+  height: 100%;
+}
+
+.nav-tile h3 { margin-top: 0; }
+/* Social/links tiles */
+.social-grid { grid-template-columns: repeat(2, minmax(160px, 1fr)); justify-items: center; }
+@media (min-width: 880px) { .social-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1120px) { .social-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 1320px) { .social-grid { grid-template-columns: repeat(5, 1fr); } }
+@media (min-width: 1500px) { .social-grid { grid-template-columns: repeat(6, 1fr); } }
+.social-tile {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  text-decoration: none;
+  color: var(--text);
+  padding: 28px 18px;
+  width: 100%;
+  max-width: none;
+}
+
+.social-tile__icon {
+  width: clamp(72px, 8vw, 120px);
+  height: clamp(72px, 8vw, 120px);
+  object-fit: contain;
+}
+
+.social-tile__label {
+  margin-top: 14px;
+  font-weight: 700;
+  color: var(--accent-700);
 }
 
 @media (min-width: 720px) {
