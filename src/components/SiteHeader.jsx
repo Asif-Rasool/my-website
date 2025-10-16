@@ -20,7 +20,7 @@ export default function SiteHeader() {
       <div className="container header-inner">
         <div className="brand brand--image">
           <NavLink to="/" className="brand-logo" aria-label="AsifRasool.net home">
-            <img src={logoWordmark} alt="AsifRasool.net" className="brand-logo__img" />
+            <img src={logoWordmark} alt="AsifRasool.net" className="brand-logo__img brand-logo__img--animated" />
           </NavLink>
         </div>
         <nav className="nav-links" aria-label="Primary">

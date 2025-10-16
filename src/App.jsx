@@ -35,7 +35,7 @@ export default function App() {
         </Routes>
       </main>
       <ScrollToTopButton />
-      {location.pathname !== "/" && <SiteFooter />}
+      <SiteFooter />
     </div>
   );
 }

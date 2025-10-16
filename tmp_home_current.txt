@@ -9,7 +9,7 @@ export default function Home() {
             <img src="/portrait.jpg" alt="Portrait of Asif Rasool" className="intro-image" />
           </div>
           <div className="intro-content">
-            <p className="intro-titles">Applied Researcher</p>
+            <p className="badge badge--gold intro-badge">Applied researcher • Knowledge mobilizer</p>
             <h1 className="intro-title">Asif Rasool</h1>
             
             <p>
@@ -23,7 +23,7 @@ export default function Home() {
               I am also passionate about finding ways to apply research in everyday life. In fact, my current projects reflect my ongoing efforts to help communities benefit directly from research. I am an avid advocate for using AI tools. Artificial intelligence has been around for decades, but it is now gaining widespread attention with the rise of generative AI. My current work focuses on helping local stakeholders leverage not only the power of generative AI but also other AI-driven approaches, such as advanced econometrics, statistical modeling, machine learning, and deep learning, all of which fall under the broader field of artificial intelligence.
             </p>
             <p>
-              I am a Research Scientist at Southeastern Louisiana University's Business Research Center (BRC), where I research, build, and develop tools to support local government agencies, businesses, and other stakeholders in conducting research studies and building models.
+              I am a Research Scientist at Southeastern Louisiana University's Business Research Center (BRC), where I research, build, and develop tools to support local government agencies, businesses, and other stakeholders in conducting economic impact studies and building models.
             </p>
             <p>
               Outside of work, I live near New Orleans, have a cat named Razor, and one wife (who is smarter than me, please do not tell her that!).

@@ -12,6 +12,7 @@
   --accent-300: #cfe7fa;
   --accent-075: #f5f9fd;
   --brand-gold: #cbb57a;
+  --brand-gold-deep: #a47f2b;
   color-scheme: only light;
 }
 
@@ -323,11 +324,12 @@ select:focus-visible {
 }
 
 .intro-title {
-  font-size: clamp(2.8rem, 6.6vw, 4.2rem);
+  font-size: clamp(5.8rem, 6.6vw, 4.2rem);
   line-height: 1.1;
-  margin: 2px 0 6px;
+  margin: 2px 0 25px;
   color: var(--accent-900);
   font-weight: 700;
+  text-align: center;
 }
 
 /* Keep headings aligned with body; fill column so side spacing is even */
@@ -407,15 +409,30 @@ select:focus-visible {
   font-weight: 700;
 }
 
-/* Intro badge below the name */
+/* Intro badge above the name, centered */
 .intro-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin: 6px 0 14px 0;
+  display: inline-block;
+  margin: 0 auto 8px;
+  text-align: center;
   font-size: clamp(0.9rem, 1.4vw, 1.05rem);
   padding: 8px 18px;
   letter-spacing: 0.08em;
+}
+
+/* David-Joyner-style titles (gold, uppercase, centered with dots) */
+.intro-titles {
+  display: block;
+  width: max-content;
+  margin: 0 auto 6px;
+  padding: 0;
+  color: var(--brand-gold-deep);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: transparent;
+  border: none;
+  text-align: center;
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
 }
 
 .timeline {
