@@ -3,8 +3,9 @@ import logoWordmark from "../assets/asifrasool-logo.png";
 
 const NAV_ITEMS = [
   { to: "/", label: "Home", end: true },
-  { to: "/experience", label: "Experience" },
   { to: "/projects", label: "Projects" },
+  { to: "/experience", label: "Experience" },
+  { to: "/education", label: "Education" },
   { to: "/mentorship", label: "Mentorship" },
   { to: "/speaking", label: "Speaking" },
   { to: "/insights", label: "Insights" },

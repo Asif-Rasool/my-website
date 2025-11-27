@@ -4,8 +4,9 @@ import SiteFooter from "./components/SiteFooter.jsx";
 import ScrollToTopButton from "./components/ScrollToTopButton.jsx";
 
 import Home from "./pages/Home.jsx";
-import Experience from "./pages/Experience.jsx";
 import Projects from "./pages/Projects.jsx";
+import Experience from "./pages/Experience.jsx";
+import Education from "./pages/Education.jsx";
 import Mentorship from "./pages/Mentorship.jsx";
 import Speaking from "./pages/Speaking.jsx";
 import Insights from "./pages/Insights.jsx";
@@ -24,8 +25,9 @@ export default function App() {
       <main id="main-content" className="container page-container">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/experience" element={<Experience />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/experience" element={<Experience />} />
+          <Route path="/education" element={<Education />} />
           <Route path="/mentorship" element={<Mentorship />} />
           <Route path="/speaking" element={<Speaking />} />
           <Route path="/insights" element={<Insights />} />
