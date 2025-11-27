@@ -6,6 +6,7 @@ const NAV_ITEMS = [
   { to: "/projects", label: "Projects" },
   { to: "/experience", label: "Experience" },
   { to: "/education", label: "Education" },
+  { to: "/publications", label: "Publications" },
   { to: "/mentorship", label: "Mentorship" },
   { to: "/speaking", label: "Speaking" },
   { to: "/insights", label: "Insights" },

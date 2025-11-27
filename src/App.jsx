@@ -13,6 +13,7 @@ import Insights from "./pages/Insights.jsx";
 import Advisory from "./pages/Advisory.jsx";
 import Newsletter from "./pages/Newsletter.jsx";
 import ChatWithRazor from "./pages/ChatWithRazor.jsx";
+import Publications from "./pages/Publications.jsx";
 
 import "./App.css";
 
@@ -28,6 +29,7 @@ export default function App() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/experience" element={<Experience />} />
           <Route path="/education" element={<Education />} />
+          <Route path="/publications" element={<Publications />} />
           <Route path="/mentorship" element={<Mentorship />} />
           <Route path="/speaking" element={<Speaking />} />
           <Route path="/insights" element={<Insights />} />
