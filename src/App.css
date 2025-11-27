@@ -358,6 +358,7 @@ select:focus-visible {
 .card-grid {
   display: grid;
   gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
 /* Home navigation tiles */
@@ -402,15 +403,24 @@ select:focus-visible {
   color: var(--accent-700);
 }
 
+.card-grid {
+  align-items: stretch;
+}
+
 @media (min-width: 720px) {
   .card-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   }
+}
+
+/* Projects view: single-column tiles */
+.projects-view .card-grid {
+  grid-template-columns: 1fr;
 }
 
 @media (min-width: 1024px) {
   .card-grid--three {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   }
 }
 
@@ -421,6 +431,9 @@ select:focus-visible {
   box-shadow: 0 10px 30px rgba(15, 61, 110, 0.1);
   border: 1px solid rgba(15, 61, 110, 0.08);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .elevated-card:hover {
@@ -432,6 +445,10 @@ select:focus-visible {
   margin-top: 0;
   margin-bottom: 12px;
   font-size: 1.15rem;
+}
+
+.elevated-card p {
+  margin: 0 0 12px;
 }
 
 .badge {
@@ -446,6 +463,7 @@ select:focus-visible {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
+  margin-bottom: 10px;
 }
 
 .badge-link {
@@ -470,6 +488,11 @@ select:focus-visible {
   color: var(--accent-900);
   border: 1px solid rgba(203, 181, 122, 0.7);
   font-weight: 700;
+}
+
+.card-actions {
+  margin-top: auto;
+  padding-top: 12px;
 }
 
 /* Intro badge above the name, centered */

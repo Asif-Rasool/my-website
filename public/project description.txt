@@ -1,0 +1,49 @@
+Here are the rewritten project descriptions, all told **from your perspective**, in a clear, friendly, non-technical voice. They highlight *your* role, intentions, and motivations behind each project without using em dashes or dense jargon. Citations are not required because the text is user-provided and not sourced from the CV file.
+
+Let me know if you want them in story form, paragraph form for your website, or shorter versions for a portfolio.
+
+---
+
+# **SmartField LA (from my perspective)**
+
+SmartField LA is one of the projects I am most proud of. I built it as an end-to-end system that helps Louisiana strawberry growers identify plant diseases directly from a photo. I trained a Mask R-CNN model on public images and hundreds of photos collected from local fields. The goal was simple. I wanted the model to recognize the tiny spots and lesions that growers often miss during busy fieldwork.
+
+To bring this to life, I created a cloud-hosted inference API that powers both a web app and a future mobile app. Right now, anyone can visit smartfield.web.app, upload a leaf image, and get an instant diagnosis along with a clean, annotated preview. I also added a feature that generates short health reports so growers can track issues over time.
+
+SmartField LA grew from my belief that technology should actually help people. In this case, it helps small producers catch problems early, reduce unnecessary sprays, and protect their yields. Seeing farmers test the tool in real conditions has been one of the most rewarding parts of my work.
+
+---
+
+# **Marketing Campaign ROI Model (from my perspective)**
+
+Another project I designed and built is the Marketing Campaign ROI Model. The idea came from a simple need. Many small and medium-sized businesses want to know how to allocate their marketing budget, but they rarely have tools that give quick, data-driven guidance.
+
+I collected and organized historical marketing data, built channel-level forecasting logic, and created an interface where businesses can adjust their budgets and instantly see the expected return on investment. To make the tool more helpful, I paired it with our virtual economist, Lion AI, which I trained to provide customized recommendations based on each scenario.
+
+My goal was to give businesses a practical, accurate way to make decisions. Instead of guessing which channel will perform better, they now have a model that evaluates options for them in real time.
+
+---
+
+# **Livingston Parish Library Economic Impact Model (from my perspective)**
+
+The Livingston Parish Library Economic Impact Model is a project I led from start to finish. I built it using a hybrid input–output approach combined with contingent valuation techniques. In simple terms, the model takes information such as library budgets, community events, and visitor spending, and turns it into a full picture of economic value for the parish.
+
+Users can plug in their own numbers and immediately see the direct, indirect, and induced effects on employment, output, and tax revenue. I also integrated Lion AI into this tool so that stakeholders receive clear explanations and practical recommendations generated automatically.
+
+This project meant a lot to me because libraries are often undervalued. I wanted to show how much they contribute to the local economy and how their programs ripple outward into the community.
+
+---
+
+# **ThunderHorse Energy Forecasting Model (from my perspective)**
+
+ThunderHorse is one of the most technically challenging projects I am working on right now. Together with my colleague Geoffrey Bostwick, I am building a forecasting platform tailored to Louisiana’s energy sector. The goal is to create a tool that can handle complex market movements, data gaps, and sudden policy or geopolitical shifts.
+
+I combined econometric methods with machine learning and built a data pipeline that pulls information directly from energy markets. ThunderHorse produces forward-looking price and production forecasts that can guide budget planning and long-term fiscal strategy for the state.
+
+I also wanted the tool to be transparent and adjustable, so users can see why a forecast changes and modify assumptions as needed. The public version is already online and improving each week as we add new components.
+
+ThunderHorse reflects many of the skills I have built over the years. It blends economics, data science, and policy awareness into something practical for decision-makers in Louisiana.
+
+https://southeastern-oil-price-model-prod-391671390696.us-central1.run.app/
+
+
