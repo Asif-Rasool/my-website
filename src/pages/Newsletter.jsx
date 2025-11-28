@@ -15,7 +15,7 @@ export default function Newsletter() {
         </div>
         <div className="highlight-panel">
           <p>
-            Share a short welcome note from LinkedIn—or craft a new one—that explains who the newsletter serves and how it
+            Share a short welcome note from LinkedIn-or craft a new one-that explains who the newsletter serves and how it
             supports your broader mission.
           </p>
           <form className="newsletter-form" onSubmit={(event) => event.preventDefault()}>

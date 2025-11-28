@@ -77,6 +77,11 @@ body {
   background: var(--bg);
 }
 
+p {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
 .header-inner::-webkit-scrollbar {
   display: none;
 }
@@ -371,6 +376,14 @@ select:focus-visible {
   color: var(--text);
   display: block;
   height: 100%;
+  text-align: left;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.nav-tile p {
+  text-align: left;
+  text-justify: auto;
 }
 
 .nav-tile h3 { margin-top: 0; }
@@ -461,11 +474,12 @@ select:focus-visible {
   height: 100%;
 }
 
-.project-card {
-  flex-direction: column;
-  padding: 0;
-  overflow: hidden;
-}
+ .project-card {
+   display: grid;
+   grid-template-columns: 1fr;
+   padding: 0;
+   overflow: hidden;
+ }
 
 .project-card__content,
 .project-card__media {
@@ -479,23 +493,29 @@ select:focus-visible {
 }
 
 .project-card__media {
-  min-height: 240px;
+  min-height: 180px;
+  height: 100%;
+  display: grid;
+  align-items: center;
+  padding: 12px;
 }
 
 .project-card__media img {
   width: 100%;
   height: 100%;
+  max-height: 320px;
   object-fit: cover;
   display: block;
+  border-radius: 12px;
 }
 
 @media (min-width: 768px) {
   .project-card {
-    flex-direction: row;
+    grid-template-columns: 1.1fr 0.9fr;
   }
 
   .project-card__media {
-    min-height: 0;
+    min-height: 240px;
   }
 }
 
@@ -607,6 +627,17 @@ select:focus-visible {
   border-radius: 50%;
   background: var(--accent-600);
   box-shadow: 0 0 0 6px rgba(21, 90, 138, 0.12);
+}
+
+.timeline__time {
+  display: inline-block;
+  margin-bottom: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(15, 61, 110, 0.1);
+  color: var(--accent-800);
+  font-weight: 700;
+  font-size: 0.85rem;
 }
 
 .info-table {
@@ -873,6 +904,170 @@ select:focus-visible {
   opacity: 0.6;
 }
 
+.chat-panel {
+  display: grid;
+  gap: 14px;
+}
+
+.chat-sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.source-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(21, 90, 138, 0.12);
+  color: var(--accent-700);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.chat-status {
+  display: none;
+}
+
+.inline-alert {
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(248, 113, 113, 0.14);
+  color: #991b1b;
+  border: 1px solid rgba(185, 28, 28, 0.2);
+  font-weight: 600;
+}
+
+.suggested-questions {
+  display: grid;
+  gap: 8px;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.question-chip {
+  border: 1px solid rgba(15, 61, 110, 0.18);
+  background: rgba(15, 61, 110, 0.08);
+  color: var(--accent-900);
+  padding: 8px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.question-chip:hover:not(:disabled) {
+  background: rgba(15, 61, 110, 0.12);
+}
+
+.question-chip:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.chat-warning {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #7c2d12;
+  background: rgba(251, 146, 60, 0.12);
+  border: 1px solid rgba(234, 88, 12, 0.2);
+  padding: 10px 14px;
+  border-radius: 12px;
+}
+.chat-view--simple .chat-panel {
+  gap: 16px;
+}
+
+.chat-title {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 18px;
+}
+
+.chat-shell__messages--simple {
+  min-height: 220px;
+}
+
+.chip-row--centered {
+  justify-content: center;
+}
+
+.contact-copy {
+  max-width: 760px;
+  margin: 0 auto 18px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.contact-card {
+  background: #fff;
+  border: 1px solid rgba(15, 61, 110, 0.12);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 12px 28px rgba(15, 61, 110, 0.1);
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.contact-card h3 {
+  margin-top: 0;
+}
+
+.contact-form {
+  display: grid;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  border: 1px solid rgba(15, 61, 110, 0.18);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 1rem;
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+.contact-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.contact-actions .button-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: none;
+  background: var(--accent-600);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
 
 
 

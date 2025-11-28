@@ -17,9 +17,7 @@ export default function ScrollToTopButton() {
   }
 
   const scrollToTop = () => {
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     window.scrollTo({ top: 0, behavior: prefersReduced ? "auto" : "smooth" });
   };
 
@@ -30,8 +28,7 @@ export default function ScrollToTopButton() {
       onClick={scrollToTop}
       aria-label="Scroll to top"
     >
-      <span aria-hidden>↑</span>
+      <span aria-hidden="true">^</span>
     </button>
   );
 }
-

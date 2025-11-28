@@ -41,37 +41,29 @@ export default function Home() {
           </div>
         </div>
         <div className="card-grid nav-tiles">
-          <NavLink className="elevated-card nav-tile" to="/experience">
-            <h3>Experience</h3>
-            <p>Roles, impact, and highlights across programs and teams.</p>
-          </NavLink>
           <NavLink className="elevated-card nav-tile" to="/projects">
             <h3>Projects</h3>
             <p>Product launches, pilots, and analytics builds with outcomes.</p>
           </NavLink>
-          <NavLink className="elevated-card nav-tile" to="/speaking">
-            <h3>Speaking</h3>
-            <p>Talks and panels on applied AI, data strategy, and leadership.</p>
+          <NavLink className="elevated-card nav-tile" to="/publications">
+            <h3>Publications</h3>
+            <p>Peer-reviewed work, reports, and fiscal impact studies.</p>
           </NavLink>
-          <NavLink className="elevated-card nav-tile" to="/insights">
-            <h3>Insights</h3>
-            <p>Articles and notes capturing methods, playbooks, and lessons.</p>
+          <NavLink className="elevated-card nav-tile" to="/experience">
+            <h3>Experience</h3>
+            <p>Roles, impact, and highlights across programs and teams.</p>
           </NavLink>
-          <NavLink className="elevated-card nav-tile" to="/advisory">
-            <h3>Advisory</h3>
-            <p>How I help teams adopt AI and analytics with measurable value.</p>
-          </NavLink>
-          <NavLink className="elevated-card nav-tile" to="/mentorship">
-            <h3>Mentorship</h3>
-            <p>Guidance for students and professionals growing in applied AI.</p>
-          </NavLink>
-          <NavLink className="elevated-card nav-tile" to="/newsletter">
-            <h3>Newsletter</h3>
-            <p>Occasional updates on projects, tools, and community efforts.</p>
+          <NavLink className="elevated-card nav-tile" to="/education">
+            <h3>Education</h3>
+            <p>Degrees, focus areas, and applied highlights.</p>
           </NavLink>
           <NavLink className="elevated-card nav-tile" to="/chat-with-razor">
             <h3>Chat with rAI-zor</h3>
             <p>Ask my AI assistant about my work, projects, and approach.</p>
+          </NavLink>
+          <NavLink className="elevated-card nav-tile" to="/contact">
+            <h3>Contact</h3>
+            <p>Email or reach out to collaborate or ask about my work.</p>
           </NavLink>
         </div>
       </section>
@@ -96,14 +88,10 @@ export default function Home() {
             <img src="/github.png" alt="GitHub" className="social-tile__icon" />
             <span className="social-tile__label">GitHub</span>
           </a>
-          <a className="elevated-card social-tile" href="https://scholar.google.com/citations?user=rd3ut40AAAAJ&hl=en&authuser=1" target="_blank" rel="noopener noreferrer">
+          <a className="elevated-card social-tile" href="https://scholar.google.com/citations-user=rd3ut40AAAAJ&hl=en&authuser=1" target="_blank" rel="noopener noreferrer">
             <img src="/googlescholar.png" alt="Google Scholar" className="social-tile__icon" />
             <span className="social-tile__label">Google Scholar</span>
           </a>
-          <NavLink className="elevated-card social-tile" to="/newsletter">
-            <img src="/news%20letter.png" alt="Newsletter" className="social-tile__icon" />
-            <span className="social-tile__label">Newsletter</span>
-          </NavLink>
           <a className="elevated-card social-tile" href="https://www.southeastern.edu/employee/asif-rasool/" target="_blank" rel="noopener noreferrer">
             <img src="/workwebste.png" alt="Work Website" className="social-tile__icon" />
             <span className="social-tile__label">Work Website</span>

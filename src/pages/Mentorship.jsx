@@ -9,7 +9,7 @@ const mentorshipMoments = [
     title: "Workshop or bootcamp placeholder",
     context: "Audience placeholder",
     description:
-      "Summarize the curriculum you facilitate—AI literacy, analytics, leadership, or career acceleration.",
+      "Summarize the curriculum you facilitate-AI literacy, analytics, leadership, or career acceleration.",
   },
   {
     title: "Community building placeholder",
@@ -48,7 +48,7 @@ export default function Mentorship() {
         <div className="section-heading">
           <h2>Resources for mentees</h2>
           <p>
-            Convert these slots into the playbooks, templates, or office hours you already provide—just plug in links and
+            Convert these slots into the playbooks, templates, or office hours you already provide-just plug in links and
             context.
           </p>
         </div>

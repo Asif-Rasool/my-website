@@ -3,7 +3,7 @@ const projects = [
     label: "SmartField LA",
     title: "SmartField LA",
     description:
-      "End-to-end system I built for Louisiana strawberry growers: snap a leaf photo, get a Mask R-CNN diagnosis, and see an annotated preview plus a short health report. The goal is simple—help small producers catch disease early and protect yields.",
+      "End-to-end system I built for Louisiana strawberry growers: snap a leaf photo, get a Mask R-CNN diagnosis, and see an annotated preview plus a short health report. The goal is simple-help small producers catch disease early and protect yields.",
     link: "https://smartfield-la-750090776627.us-central1.run.app/",
     image: "/SmartField%20LA.jpg",
     imageAlt: "SmartField LA mobile screenshots showing plant-disease diagnosis workflow",

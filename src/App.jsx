@@ -5,15 +5,11 @@ import ScrollToTopButton from "./components/ScrollToTopButton.jsx";
 
 import Home from "./pages/Home.jsx";
 import Projects from "./pages/Projects.jsx";
+import Publications from "./pages/Publications.jsx";
 import Experience from "./pages/Experience.jsx";
 import Education from "./pages/Education.jsx";
-import Mentorship from "./pages/Mentorship.jsx";
-import Speaking from "./pages/Speaking.jsx";
-import Insights from "./pages/Insights.jsx";
-import Advisory from "./pages/Advisory.jsx";
-import Newsletter from "./pages/Newsletter.jsx";
 import ChatWithRazor from "./pages/ChatWithRazor.jsx";
-import Publications from "./pages/Publications.jsx";
+import Contact from "./pages/Contact.jsx";
 
 import "./App.css";
 
@@ -27,15 +23,11 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/publications" element={<Publications />} />
           <Route path="/experience" element={<Experience />} />
           <Route path="/education" element={<Education />} />
-          <Route path="/publications" element={<Publications />} />
-          <Route path="/mentorship" element={<Mentorship />} />
-          <Route path="/speaking" element={<Speaking />} />
-          <Route path="/insights" element={<Insights />} />
-          <Route path="/advisory" element={<Advisory />} />
-          <Route path="/newsletter" element={<Newsletter />} />
           <Route path="/chat-with-razor" element={<ChatWithRazor />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
       <ScrollToTopButton />

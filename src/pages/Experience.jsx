@@ -84,8 +84,9 @@ export default function Experience() {
         <div className="timeline">
           {experiences.map((role) => (
             <article key={role.title} className="timeline__item">
+              <div className="timeline__time">{role.timeframe}</div>
               <h3>{role.title}</h3>
-              <p className="muted">{role.company} - {role.timeframe}</p>
+              <p className="muted">{role.company}</p>
               <p>{role.summary}</p>
               <ul>
                 {role.highlights.map((item) => (

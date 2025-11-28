@@ -4,15 +4,11 @@ import logoWordmark from "../assets/asifrasool-logo.png";
 const NAV_ITEMS = [
   { to: "/", label: "Home", end: true },
   { to: "/projects", label: "Projects" },
+  { to: "/publications", label: "Publications" },
   { to: "/experience", label: "Experience" },
   { to: "/education", label: "Education" },
-  { to: "/publications", label: "Publications" },
-  { to: "/mentorship", label: "Mentorship" },
-  { to: "/speaking", label: "Speaking" },
-  { to: "/insights", label: "Insights" },
-  { to: "/advisory", label: "Advisory" },
-  { to: "/newsletter", label: "Newsletter" },
   { to: "/chat-with-razor", label: "Chat with rAI-zor" },
+  { to: "/contact", label: "Contact" },
 ];
 
 export default function SiteHeader() {

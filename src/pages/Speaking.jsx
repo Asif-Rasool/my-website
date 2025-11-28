@@ -12,7 +12,7 @@ const appearances = [
   {
     label: "Press",
     title: "Coverage headline placeholder",
-    description: "Explain why the outlet covered you—product launch, research release, or community impact."
+    description: "Explain why the outlet covered you-product launch, research release, or community impact."
   }
 ];
 
@@ -24,7 +24,7 @@ export default function Speaking() {
           <div>
             <h2>Speaking & media</h2>
             <p>
-              Document your voice—from conference stages to recorded conversations—so visitors can quickly see where you
+              Document your voice-from conference stages to recorded conversations-so visitors can quickly see where you
               show up.
             </p>
           </div>
@@ -44,7 +44,7 @@ export default function Speaking() {
         <div className="section-heading">
           <h2>Speaker kit</h2>
           <p>
-            Link to bios, headshots, and talk topics—anything your LinkedIn feature section references for event planners.
+            Link to bios, headshots, and talk topics-anything your LinkedIn feature section references for event planners.
           </p>
         </div>
         <div className="highlight-panel">

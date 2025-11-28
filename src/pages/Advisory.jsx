@@ -15,7 +15,7 @@ export default function Advisory() {
           <article className="elevated-card">
             <h3>Advisory retainer placeholder</h3>
             <p>
-              Describe the cadence, deliverables, and transformation themes you cover—strategy, AI readiness, operating
+              Describe the cadence, deliverables, and transformation themes you cover-strategy, AI readiness, operating
               models.
             </p>
           </article>

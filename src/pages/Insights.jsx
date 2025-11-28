@@ -49,7 +49,7 @@ export default function Insights() {
         </div>
         <div className="highlight-panel">
           <p>
-            Share why people subscribe—pragmatic AI, change leadership, future of work—and reinforce your publishing cadence.
+            Share why people subscribe-pragmatic AI, change leadership, future of work-and reinforce your publishing cadence.
           </p>
         </div>
       </section>
