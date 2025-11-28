@@ -59,48 +59,37 @@ const suggestedQuestions = [
   "How can I contact Asif?",
 ];
 
-async function callGemini({ apiKey, model, userText, history, contextBlock }) {
-  const contents = [
-    ...history.map((message) => ({
-      role: message.role,
-      parts: [{ text: message.content }],
-    })),
-    {
-      role: "user",
-      parts: [
-        {
-          text: `Context (from Asif's resume, CV, and site):\n${contextBlock}\n\nQuestion: ${userText}\n\nUse only the context above and clearly state when information is not available.`,
-        },
-      ],
-    },
-  ];
-
-  const response = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        contents,
-        system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
-        generationConfig: {
-          temperature: 0.25,
-          maxOutputTokens: 512,
-        },
-      }),
-    },
-  );
+async function callChatApi({ userText, history, contextBlock }) {
+  const response = await fetch("/chat", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      message: userText,
+      history,
+      contextBlock,
+    }),
+  });
 
   if (!response.ok) {
     const errorBody = await response.text();
-    throw new Error(`Gemini request failed (${response.status}): ${errorBody}`);
+    throw new Error(`Chat endpoint failed (${response.status}): ${errorBody}`);
   }
 
-  const result = await response.json();
-  const output = result?.candidates?.[0]?.content?.parts?.map((p) => p.text).join("\n").trim();
+  let result;
+  try {
+    result = await response.json();
+  } catch (error) {
+    throw new Error("Chat endpoint returned invalid JSON.");
+  }
+
+  if (result?.error) {
+    throw new Error(result.error);
+  }
+
+  const output = typeof result?.reply === "string" ? result.reply.trim() : "";
 
   if (!output) {
-    throw new Error("Gemini returned an empty response. Check the prompt or credentials.");
+    throw new Error("Chat endpoint did not return a reply.");
   }
 
   return output;
@@ -111,10 +100,7 @@ export default function ChatWithRazor() {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
   const messagesRef = useRef(null);
-
-  const hasApiKey = Boolean(apiKey);
 
   useEffect(() => {
     if (messagesRef.current) {
@@ -141,17 +127,8 @@ export default function ChatWithRazor() {
     setIsLoading(true);
     setMessages(updatedHistory);
 
-    if (!hasApiKey) {
-      const fallback = buildLocalFallback(question);
-      setMessages([...updatedHistory, { role: "assistant", content: fallback }]);
-      setIsLoading(false);
-      return;
-    }
-
     try {
-      const reply = await callGemini({
-        apiKey,
-        model: "gemini-2.0-flash-exp",
+      const reply = await callChatApi({
         userText: question,
         history: updatedHistory.slice(-6),
         contextBlock: block,
