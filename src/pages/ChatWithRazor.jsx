@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { defaultWelcome, knowledgeBase } from "../data/raizorKnowledge";
 
 const SYSTEM_PROMPT = `You are rAIzor, a friendly cat-inspired guide for Asif Rasool's site.
@@ -112,8 +112,15 @@ export default function ChatWithRazor() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+  const messagesRef = useRef(null);
 
   const hasApiKey = Boolean(apiKey);
+
+  useEffect(() => {
+    if (messagesRef.current) {
+      messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
+    }
+  }, [messages, isLoading]);
 
   const sendQuestion = async (question) => {
     if (!question.trim() || isLoading) return;
@@ -193,7 +200,7 @@ export default function ChatWithRazor() {
             ))}
           </div>
 
-          <div className="chat-shell__messages chat-shell__messages--simple">
+          <div className="chat-shell__messages chat-shell__messages--simple" ref={messagesRef}>
             {messages.map((message, index) => (
               <div
                 key={`${message.role}-${index}`}
