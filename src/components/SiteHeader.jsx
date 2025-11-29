@@ -11,7 +11,12 @@ const NAV_ITEMS = [
   { to: "/contact", label: "Contact" },
 ];
 
-export default function SiteHeader() {
+export default function SiteHeader({
+  // Accessibility Mode: start
+  accessibilityEnabled = false,
+  onToggleAccessibility = () => {},
+  // Accessibility Mode: end
+}) {
   return (
     <header className="site-header">
       <a className="skip-to-content" href="#main-content">Skip to main content</a>
@@ -34,6 +39,16 @@ export default function SiteHeader() {
               {label}
             </NavLink>
           ))}
+          {/* Accessibility Mode: start */}
+          <button
+            type="button"
+            className={["nav-link", "nav-link--button", accessibilityEnabled ? "active" : null].filter(Boolean).join(" ")}
+            onClick={onToggleAccessibility}
+            aria-pressed={accessibilityEnabled}
+          >
+            Accessibility
+          </button>
+          {/* Accessibility Mode: end */}
         </nav>
       </div>
     </header>

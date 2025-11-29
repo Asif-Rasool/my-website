@@ -196,6 +196,7 @@ p {
 .nav-link:hover { color: var(--accent-700); }
 
 .nav-link.active { font-weight: 600; color: var(--accent-600); }
+.nav-link--button { border: none; background: transparent; cursor: pointer; }
 
 .nav-link:focus-visible,
 button:focus-visible,
@@ -1089,6 +1090,62 @@ select:focus-visible {
   font-weight: 700;
   text-decoration: none;
 }
+
+/* Accessibility Mode: start */
+body.accessibility-mode {
+  font-size: clamp(18px, 1.85vw, 20px);
+  line-height: 1.75;
+  --text: #0a1f3c;
+  --muted: #0f2f55;
+  --accent-600: #0c4f82;
+  --accent-700: #0a3d63;
+  --line: #c5d3e3;
+}
+
+body.accessibility-mode .container {
+  padding-left: clamp(18px, 4.4vw, 52px);
+  padding-right: clamp(18px, 4.4vw, 52px);
+}
+
+body.accessibility-mode .nav-link,
+body.accessibility-mode .button-link,
+body.accessibility-mode button,
+body.accessibility-mode input,
+body.accessibility-mode select,
+body.accessibility-mode textarea {
+  padding-top: calc(6px + 2px);
+  padding-bottom: calc(6px + 2px);
+}
+
+body.accessibility-mode .nav-link {
+  font-weight: 700;
+  color: var(--text);
+}
+
+body.accessibility-mode .nav-link.active {
+  color: var(--accent-700);
+}
+
+body.accessibility-mode .nav-link:focus-visible,
+body.accessibility-mode button:focus-visible,
+body.accessibility-mode input:focus-visible,
+body.accessibility-mode textarea:focus-visible,
+body.accessibility-mode select:focus-visible {
+  outline: 3px solid var(--brand-gold);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(203, 181, 122, 0.35);
+}
+
+body.accessibility-mode .skip-to-content {
+  top: 10px;
+  background: var(--accent-700);
+}
+
+body.accessibility-mode * {
+  transition-duration: 120ms !important;
+  animation-duration: 120ms !important;
+}
+/* Accessibility Mode: end */
 
 /* Mobile-friendly tweaks */
 @media (max-width: 680px) {

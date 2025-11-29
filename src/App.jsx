@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import SiteHeader from "./components/SiteHeader.jsx";
 import SiteFooter from "./components/SiteFooter.jsx";
 import ScrollToTopButton from "./components/ScrollToTopButton.jsx";
@@ -16,6 +16,24 @@ import "./App.css";
 
 export default function App() {
   const location = useLocation();
+  // Accessibility Mode: start
+  const ACCESSIBILITY_KEY = "accessibility-mode-enabled";
+  const [isAccessibilityMode, setIsAccessibilityMode] = useState(false);
+
+  // Initialize accessibility mode from saved preference
+  useEffect(() => {
+    const savedPref = localStorage.getItem(ACCESSIBILITY_KEY);
+    if (savedPref === "true") {
+      setIsAccessibilityMode(true);
+    }
+  }, []);
+
+  // Keep DOM + storage in sync with the toggle state
+  useEffect(() => {
+    document.body.classList.toggle("accessibility-mode", isAccessibilityMode);
+    localStorage.setItem(ACCESSIBILITY_KEY, String(isAccessibilityMode));
+  }, [isAccessibilityMode]);
+  // Accessibility Mode: end
 
   useEffect(() => {
     // Reset scroll when navigating between routes
@@ -24,7 +42,12 @@ export default function App() {
 
   return (
     <div className="app-shell">
-      <SiteHeader />
+      <SiteHeader
+        // Accessibility Mode: start
+        accessibilityEnabled={isAccessibilityMode}
+        onToggleAccessibility={() => setIsAccessibilityMode((prev) => !prev)}
+        // Accessibility Mode: end
+      />
       <main id="main-content" className="container page-container">
         <Routes>
           <Route path="/" element={<Home />} />
