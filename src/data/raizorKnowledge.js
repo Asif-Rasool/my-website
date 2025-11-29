@@ -184,9 +184,9 @@ export const referenceFiles = [
     description: "Latest resume download.",
   },
   {
-    label: "Curriculum Vitae (DOCX)",
-    href: "/CV%20of%20Asif%20Rasool%20for%20Evaluation.docx",
-    description: "Full CV in Word format.",
+    label: "Curriculum Vitae (PDF)",
+    href: "/CV%20of%20Asif%20Rasool%20for%20Evaluation.pdf",
+    description: "Full CV in PDF format.",
   },
   {
     label: "CV Snapshot (PNG)",

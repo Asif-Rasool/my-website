@@ -1,4 +1,5 @@
 import { Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import SiteHeader from "./components/SiteHeader.jsx";
 import SiteFooter from "./components/SiteFooter.jsx";
 import ScrollToTopButton from "./components/ScrollToTopButton.jsx";
@@ -15,6 +16,11 @@ import "./App.css";
 
 export default function App() {
   const location = useLocation();
+
+  useEffect(() => {
+    // Reset scroll when navigating between routes
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [location.pathname]);
 
   return (
     <div className="app-shell">

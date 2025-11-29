@@ -59,8 +59,10 @@ const suggestedQuestions = [
   "How can I contact Asif?",
 ];
 
+const CHAT_ENDPOINT = (import.meta.env.VITE_CHAT_ENDPOINT || "/chat").trim();
+
 async function callChatApi({ userText, history, contextBlock }) {
-  const response = await fetch("/chat", {
+  const response = await fetch(CHAT_ENDPOINT, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({

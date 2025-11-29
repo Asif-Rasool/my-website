@@ -334,7 +334,7 @@ select:focus-visible {
 }
 
 .intro-title {
-  font-size: clamp(5.8rem, 6.6vw, 4.2rem);
+  font-size: clamp(2.6rem, 6vw, 3.8rem);
   line-height: 1.1;
   margin: 2px 0 25px;
   color: var(--accent-900);
@@ -1056,6 +1056,94 @@ select:focus-visible {
   color: #fff;
   font-weight: 700;
   text-decoration: none;
+}
+
+/* Mobile-friendly tweaks */
+@media (max-width: 680px) {
+  .header-inner {
+    padding: 12px 14px;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  .nav-link {
+    padding: 6px 6px;
+    font-size: 0.95rem;
+  }
+
+  .page-container {
+    padding-top: 20px;
+  }
+
+  .page-section {
+    padding: 18px;
+    margin-bottom: 40px;
+  }
+
+  .section-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .card-grid,
+  .nav-tiles {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  .social-grid {
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+    gap: 12px;
+  }
+
+  .social-tile {
+    padding: 20px 12px;
+  }
+
+  .social-tile__icon {
+    width: clamp(62px, 18vw, 88px);
+    height: clamp(62px, 18vw, 88px);
+  }
+
+  .project-card__content {
+    padding: 18px;
+  }
+
+  .project-card__media {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 12px;
+  }
+
+  .intro-split {
+    grid-template-columns: 1fr;
+  }
+
+  .page-section {
+    padding: 16px;
+  }
+
+  .timeline {
+    padding-left: 18px;
+  }
+
+  .timeline__item {
+    padding-left: 12px;
+  }
+
+  .footer-links {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+  }
 }
 
 .sr-only {

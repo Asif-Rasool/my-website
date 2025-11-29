@@ -80,7 +80,7 @@ export default function Home() {
             <img src="/linkedin.png" alt="LinkedIn" className="social-tile__icon" />
             <span className="social-tile__label">LinkedIn</span>
           </a>
-          <a className="elevated-card social-tile" href="/CV%20of%20Asif%20Rasool%20for%20Evaluation.docx" target="_blank" rel="noopener noreferrer">
+          <a className="elevated-card social-tile" href="/CV%20of%20Asif%20Rasool%20for%20Evaluation.pdf" target="_blank" rel="noopener noreferrer">
             <img src="/cv.png" alt="Curriculum Vitae" className="social-tile__icon" />
             <span className="social-tile__label">Curriculum Vitae</span>
           </a>
@@ -88,7 +88,7 @@ export default function Home() {
             <img src="/github.png" alt="GitHub" className="social-tile__icon" />
             <span className="social-tile__label">GitHub</span>
           </a>
-          <a className="elevated-card social-tile" href="https://scholar.google.com/citations-user=rd3ut40AAAAJ&hl=en&authuser=1" target="_blank" rel="noopener noreferrer">
+          <a className="elevated-card social-tile" href="https://scholar.google.com/citations?user=rd3ut40AAAAJ&hl=en&authuser=3" target="_blank" rel="noopener noreferrer">
             <img src="/googlescholar.png" alt="Google Scholar" className="social-tile__icon" />
             <span className="social-tile__label">Google Scholar</span>
           </a>

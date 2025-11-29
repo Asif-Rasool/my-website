@@ -120,7 +120,7 @@ export default function Publications() {
           </div>
           <a
             className="badge badge-link"
-            href="https://scholar.google.com/citations?user=rd3ut40AAAAJ"
+            href="https://scholar.google.com/citations?user=rd3ut40AAAAJ&hl=en&authuser=3"
             target="_blank"
             rel="noreferrer"
             aria-label="Open Google Scholar profile"
