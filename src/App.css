@@ -681,6 +681,22 @@ select:focus-visible {
   color: var(--muted);
 }
 
+.cert-card {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.cert-card p {
+  text-align: left;
+  text-justify: auto;
+}
+
+.cert-card .badge-link {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
 .highlight-panel {
   background: rgba(207, 231, 250, 0.4);
   border-radius: 18px;
