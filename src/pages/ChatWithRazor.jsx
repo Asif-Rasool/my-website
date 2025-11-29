@@ -51,13 +51,25 @@ function buildLocalFallback(question) {
 const suggestedQuestions = [
   "What is Asif working on right now?",
   "Tell me about SmartField LA.",
-  "What is the ThunderHorse Energy Forecasting model?",
-  "What is LionIDE?",
   "Summarize Asif's education background.",
-  "What did he do as Senior Economist in New Mexico?",
-  "What are key highlights from his dissertation?",
   "How can I contact Asif?",
 ];
+
+const defaultFollowups = [
+  "Tell me more about his current work.",
+  "Share another recent project.",
+  "How can I reach Asif?",
+];
+
+function buildFollowups(topEntries = []) {
+  if (!topEntries.length) return defaultFollowups;
+
+  const uniqueTitles = Array.from(new Set(topEntries.map((item) => item.title))).slice(0, 3);
+
+  if (!uniqueTitles.length) return defaultFollowups;
+
+  return uniqueTitles.map((title) => `Tell me more about ${title}`);
+}
 
 const CHAT_ENDPOINT = (import.meta.env.VITE_CHAT_ENDPOINT || "/chat").trim();
 
@@ -102,6 +114,7 @@ export default function ChatWithRazor() {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [followups, setFollowups] = useState([]);
   const messagesRef = useRef(null);
 
   useEffect(() => {
@@ -124,6 +137,7 @@ export default function ChatWithRazor() {
 
     const { block, top } = buildContext(question);
     const updatedHistory = [...messages, { role: "user", content: question }];
+    const nextFollowups = buildFollowups(top);
 
     setError("");
     setIsLoading(true);
@@ -137,11 +151,13 @@ export default function ChatWithRazor() {
       });
 
       setMessages((prev) => [...prev, { role: "assistant", content: reply, sources: top.map((item) => item.title) }]);
+      setFollowups(nextFollowups);
     } catch (err) {
       const friendly = err instanceof Error ? err.message : "Something went wrong calling the model.";
       setError(friendly);
       const fallback = buildLocalFallback(question);
       setMessages((prev) => [...prev, { role: "assistant", content: fallback }]);
+      setFollowups(nextFollowups.length ? nextFollowups : defaultFollowups);
     } finally {
       setIsLoading(false);
     }
@@ -190,6 +206,26 @@ export default function ChatWithRazor() {
             ))}
             {isLoading && <div className="chat-message chat-message--assistant muted">rAIzor is thinking...</div>}
           </div>
+
+          {followups.length > 0 && (
+            <div className="followup-block">
+              <p className="muted followup-label">Try a follow-up:</p>
+              <div className="chip-row chip-row--centered followup-row">
+                {followups.map((question) => (
+                  <button
+                    key={`followup-${question}`}
+                    type="button"
+                    className="question-chip"
+                    onClick={() => handleSuggested(question)}
+                    disabled={isLoading}
+                    aria-label={`Ask: ${question}`}
+                  >
+                    {question}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
 
           <form className="chat-shell__composer" onSubmit={handleSubmit}>
             <input
