@@ -137,6 +137,8 @@ const certifications = [
   },
 ];
 
+const showCertifications = false; // Toggle visibility without removing content
+
 export default function Education() {
   return (
     <div className="experience-view">
@@ -173,52 +175,54 @@ export default function Education() {
         </div>
       </section>
 
-      <section className="page-section">
-        <div className="section-heading">
-          <div>
-            <h2>Certifications</h2>
-            <p className="muted">
-              My professional development spans analytics, machine learning, and
-              programming. These certifications complement my advanced training
-              in econometrics and applied machine learning, reinforcing the
-              technical skills used throughout my research.
-            </p>
+      {showCertifications && (
+        <section className="page-section">
+          <div className="section-heading">
+            <div>
+              <h2>Certifications</h2>
+              <p className="muted">
+                My professional development spans analytics, machine learning,
+                and programming. These certifications complement my advanced
+                training in econometrics and applied machine learning,
+                reinforcing the technical skills used throughout my research.
+              </p>
+            </div>
           </div>
-        </div>
 
-        <div className="timeline">
-          {certifications.map((group) => (
-            <article key={group.category} className="timeline__item">
-              <h3>{group.category}</h3>
-              <div className="card-grid">
-                {group.items.map((cert) => (
-                  <div
-                    key={`${cert.title}-${cert.date}`}
-                    className="elevated-card cert-card"
-                  >
-                    <h4>{cert.title}</h4>
-                    <p className="muted">
-                      {cert.provider}, {cert.date}
-                      {cert.credentialId
-                        ? ` | Credential ID: ${cert.credentialId}`
-                        : ""}
-                    </p>
-                    <p>{cert.description}</p>
-                    <a
-                      className="badge badge-link"
-                      href={cert.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
+          <div className="timeline">
+            {certifications.map((group) => (
+              <article key={group.category} className="timeline__item">
+                <h3>{group.category}</h3>
+                <div className="card-grid">
+                  {group.items.map((cert) => (
+                    <div
+                      key={`${cert.title}-${cert.date}`}
+                      className="elevated-card cert-card"
                     >
-                      View credential
-                    </a>
-                  </div>
-                ))}
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
+                      <h4>{cert.title}</h4>
+                      <p className="muted">
+                        {cert.provider}, {cert.date}
+                        {cert.credentialId
+                          ? ` | Credential ID: ${cert.credentialId}`
+                          : ""}
+                      </p>
+                      <p>{cert.description}</p>
+                      <a
+                        className="badge badge-link"
+                        href={cert.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        View credential
+                      </a>
+                    </div>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="page-section">
         <div className="section-heading">
