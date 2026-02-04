@@ -490,6 +490,17 @@ select:focus-visible {
   padding: 18px;
 }
 
+.citation {
+  margin: 6px 0 12px;
+  font-size: 0.95rem;
+  color: var(--text);
+  text-align: left;
+}
+
+.citation em {
+  font-style: italic;
+}
+
 .timeline__year-group {
   display: grid;
   gap: 16px;

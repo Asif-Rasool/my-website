@@ -9,6 +9,8 @@ const staticPublications = [
   {
     title:
       "Heterogeneity in U.S. Farms: A New Clustering by Production Potentials",
+    citation:
+      "Rasool, A., & Abler, D. (2023). *Heterogeneity in U.S. Farms: A New Clustering by Production Potentials*. Agriculture, 13(2), 258.",
     type: "Article",
     outlet: "Agriculture 13(2): 258",
     year: 2023,
@@ -22,6 +24,8 @@ const staticPublications = [
   {
     title:
       "Investing in Agribusiness Stocks and Farmland: A Boom or Bust Analysis",
+    citation:
+      "Rasool, A. (2018). *Investing in Agribusiness Stocks and Farmland: A Boom or Bust Analysis*. Utah State University.",
     type: "Article",
     outlet: "Utah State University",
     year: 2018,
@@ -35,6 +39,8 @@ const staticPublications = [
   {
     title:
       "Beyond Books: Estimating the Economic and Social Impact of the Livingston Parish Library",
+    citation:
+      "Rasool, A. (2025). *Beyond Books: Estimating the Economic and Social Impact of the Livingston Parish Library*. Business Research Center, Southeastern Louisiana University.",
     type: "Economic Impact Study",
     outlet: "Business Research Center, Southeastern Louisiana University",
     year: 2025,
@@ -48,6 +54,8 @@ const staticPublications = [
   {
     title:
       "Putting the Cart Before the Horse: An Accidental Journey to Better Human-Computer Interaction",
+    citation:
+      "Rasool, A. (2025). *Putting the Cart Before the Horse: An Accidental Journey to Better Human-Computer Interaction*. Technical Report, Business Research Center, Southeastern Louisiana University.",
     type: "HCI Study",
     outlet: "Business Research Center, Southeastern Louisiana University",
     year: 2025,
@@ -61,6 +69,8 @@ const staticPublications = [
   {
     title:
       "Three Essays in Applied Economics: Topics in Agricultural Economics and Public Finance",
+    citation:
+      "Rasool, A. (2024). *Three Essays in Applied Economics: Topics in Agricultural Economics and Public Finance*. Doctoral dissertation, Pennsylvania State University.",
     type: "Dissertation",
     outlet: "Pennsylvania State University",
     year: 2024,
@@ -142,11 +152,17 @@ export default function Publications() {
                   >
                     <div className="badge badge--gold">{item.type}</div>
                     <h3>{item.title}</h3>
-                    <p className="muted">
-                      {item.outlet} - {item.year}
-                    </p>
-                    {item.authors && (
-                      <p className="muted">Authors: {item.authors}</p>
+                    {item.citation ? (
+                      renderCitation(item.citation, `${item.title}-citation`)
+                    ) : (
+                      <>
+                        <p className="muted">
+                          {item.outlet} - {item.year}
+                        </p>
+                        {item.authors && (
+                          <p className="muted">Authors: {item.authors}</p>
+                        )}
+                      </>
                     )}
                     {item.advisors && <p className="muted">{item.advisors}</p>}
                     {renderParagraphs(
@@ -209,6 +225,7 @@ function transformFirText(rawText) {
       summary: entry.summary,
       abstract: entry.abstract,
       link: metaEntry.link,
+      citation: metaEntry.citation,
     };
   });
 }
@@ -248,22 +265,64 @@ function parseApaBibliography(rawText) {
   const apaSection = sections[1] || "";
   const lines = apaSection.split(/\r?\n/);
   const entries = [];
-  let currentYear;
+  let currentCitationLines = [];
 
-  for (const line of lines) {
-    const yearMatch = line.match(/\((\d{4})\)/);
-    if (yearMatch) {
-      currentYear = Number(yearMatch[1]);
+  const flushEntry = (link) => {
+    const citation = normalizeCitation(currentCitationLines.join(" "));
+    if (!citation || !link) {
+      currentCitationLines = [];
+      return;
     }
 
-    const linkMatch = line.match(/\[(https?:[^\]]+)\]/);
-    if (linkMatch) {
-      entries.push({
-        year: currentYear,
-        link: linkMatch[1],
-      });
-      currentYear = undefined;
+    const yearMatch = citation.match(/\((\d{4})\)/);
+    entries.push({
+      year: yearMatch ? Number(yearMatch[1]) : undefined,
+      link,
+      citation,
+    });
+    currentCitationLines = [];
+  };
+
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+    if (!line) {
+      continue;
     }
+
+    if (line.startsWith("#") || line.startsWith("✅") || line.startsWith("Here")) {
+      continue;
+    }
+
+    const markdownLinkMatch = line.match(
+      /\[(https?:[^\]]+)\]\((https?:[^\)]+)\)/
+    );
+    const bracketLinkMatch = line.match(/\[(https?:[^\]]+)\]/);
+    const plainLinkMatch = line.match(/(https?:\/\/\S+)/);
+    const link =
+      (markdownLinkMatch && markdownLinkMatch[1]) ||
+      (bracketLinkMatch && bracketLinkMatch[1]) ||
+      (plainLinkMatch && plainLinkMatch[1]);
+
+    if (link) {
+      const lineWithoutLink = line
+        .replace(/\s*\[[^\]]+\]\([^\)]+\)\s*/g, " ")
+        .replace(/\s*\[[^\]]+\]\s*/g, " ")
+        .replace(/\s*https?:\/\/\S+\s*/g, " ")
+        .trim();
+
+      if (lineWithoutLink) {
+        currentCitationLines.push(lineWithoutLink);
+      }
+
+      flushEntry(link);
+      continue;
+    }
+
+    if (/^\d+\./.test(line)) {
+      continue;
+    }
+
+    currentCitationLines.push(line);
   }
 
   return entries;
@@ -288,4 +347,40 @@ function renderParagraphs(content, className, keyPrefix) {
       {paragraph}
     </p>
   ));
+}
+
+function renderCitation(citation, keyPrefix) {
+  if (!citation) {
+    return null;
+  }
+
+  const parts = citation.split(/(\*[^*]+\*)/g).filter(Boolean);
+
+  return (
+    <p className="citation" key={keyPrefix}>
+      {parts.map((part, index) => {
+        const match = part.match(/^\*([^*]+)\*$/);
+        if (match) {
+          return (
+            <em key={`${keyPrefix}-em-${index}`}>
+              {match[1]}
+            </em>
+          );
+        }
+
+        return (
+          <span key={`${keyPrefix}-txt-${index}`}>
+            {part}
+          </span>
+        );
+      })}
+    </p>
+  );
+}
+
+function normalizeCitation(text) {
+  return text
+    .replace(/\s+/g, " ")
+    .replace(/\s+\./g, ".")
+    .trim();
 }
