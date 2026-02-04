@@ -165,13 +165,13 @@ export default function Publications() {
                       </>
                     )}
                     {item.advisors && <p className="muted">{item.advisors}</p>}
-                    {renderParagraphs(
-                      item.summary,
-                      undefined,
-                      `${item.title}-summary`
+                    {(item.abstract || item.summary) && (
+                      <p className="muted">
+                        <strong>Abstract</strong>
+                      </p>
                     )}
                     {renderParagraphs(
-                      item.abstract,
+                      item.abstract || item.summary,
                       "muted",
                       `${item.title}-abstract`
                     )}
