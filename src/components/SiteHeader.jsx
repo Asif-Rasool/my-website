@@ -8,6 +8,7 @@ const NAV_ITEMS = [
   { to: "/publications", label: "Publications" },
   { to: "/experience", label: "Experience" },
   { to: "/education", label: "Education" },
+  { to: "/games", label: "Games" },
   { to: "/chat-with-razor", label: "Chat with rAI-zor" },
   { to: "/contact", label: "Contact" },
 ];

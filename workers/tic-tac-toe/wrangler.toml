@@ -1,0 +1,7 @@
+name = "tic-tac-toe-agent"
+main = "worker.py"
+compatibility_date = "2026-02-06"
+compatibility_flags = ["python_workers"]
+
+[vars]
+ENVIRONMENT = "production"

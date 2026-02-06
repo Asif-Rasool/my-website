@@ -11,6 +11,7 @@ import Experience from "./pages/Experience.jsx";
 import Education from "./pages/Education.jsx";
 import ChatWithRazor from "./pages/ChatWithRazor.jsx";
 import Contact from "./pages/Contact.jsx";
+import Games from "./pages/Games.jsx";
 
 import "./App.css";
 
@@ -33,6 +34,7 @@ export default function App() {
           <Route path="/experience" element={<Experience />} />
           <Route path="/education" element={<Education />} />
           <Route path="/chat-with-razor" element={<ChatWithRazor />} />
+          <Route path="/games" element={<Games />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
