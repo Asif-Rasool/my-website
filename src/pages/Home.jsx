@@ -84,6 +84,10 @@ export default function Home() {
             <h3>Education</h3>
             <p>Degrees, certificates concentrations, and learnings.</p>
           </NavLink>
+          <NavLink className="elevated-card nav-tile" to="/games">
+            <h3>Games</h3>
+            <p>Play Tic-Tac-Toe against my own AI agent.</p>
+          </NavLink>
           <NavLink className="elevated-card nav-tile" to="/chat-with-razor">
             <h3>Chat with rAI-zor</h3>
             <p>Ask my AI assistant about my work, projects, and research.</p>

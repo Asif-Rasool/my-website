@@ -1338,9 +1338,59 @@ body.accessibility-mode * {
 
 @media (min-width: 900px) {
   .games-grid {
-    grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
     align-items: start;
   }
+}
+
+.games-copy {
+  display: grid;
+  gap: 16px;
+}
+
+.ttt-github {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  color: var(--accent-700);
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 61, 110, 0.16);
+  background: rgba(15, 61, 110, 0.06);
+  width: fit-content;
+}
+
+.ttt-github:hover {
+  background: rgba(15, 61, 110, 0.12);
+}
+
+.ttt-github__icon {
+  width: 18px;
+  height: 18px;
+}
+
+.ttt-stack {
+  display: grid;
+  gap: 16px;
+  align-items: start;
+}
+
+.ttt-intro {
+  text-align: center;
+  margin: 0;
+}
+
+.ttt-lockout {
+  margin: 0;
+  text-align: center;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(251, 146, 60, 0.12);
+  border: 1px solid rgba(234, 88, 12, 0.2);
+  color: #7c2d12;
+  font-weight: 600;
 }
 
 .ttt-board {
@@ -1399,6 +1449,44 @@ body.accessibility-mode * {
   padding: 18px;
   border: 1px solid rgba(15, 61, 110, 0.12);
   box-shadow: 0 10px 24px rgba(15, 61, 110, 0.08);
+}
+
+.ttt-status__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ttt-status__badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(15, 61, 110, 0.12);
+  color: var(--accent-700);
+}
+
+.ttt-status__message {
+  margin: 8px 0 14px;
+  font-weight: 600;
+  color: var(--accent-900);
+}
+
+.ttt-status__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(15, 61, 110, 0.08);
+  padding-top: 10px;
+  margin-top: 10px;
+  color: var(--muted);
+}
+
+.ttt-status__row strong {
+  color: var(--accent-900);
 }
 
 .ttt-status h3,
