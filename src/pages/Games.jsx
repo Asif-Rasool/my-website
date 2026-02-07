@@ -1,7 +1,24 @@
 import { useEffect, useMemo, useState } from "react";
 
-const API_ENDPOINT =
-  import.meta.env.VITE_TTT_API_BASE || "/api/tic-tac-toe/move";
+const resolveApiEndpoint = () => {
+  if (import.meta.env.VITE_TTT_API_BASE) {
+    return import.meta.env.VITE_TTT_API_BASE;
+  }
+
+  // When the site is loaded on the apex domain, point requests at the
+  // canonical www host where the Worker route is configured.
+  if (typeof window !== "undefined") {
+    const { hostname, protocol } = window.location;
+    if (hostname === "asifrasool.net") {
+      const scheme = protocol === "http:" ? "http:" : "https:";
+      return `${scheme}//www.asifrasool.net/api/tic-tac-toe/move`;
+    }
+  }
+
+  return "/api/tic-tac-toe/move";
+};
+
+const API_ENDPOINT = resolveApiEndpoint();
 
 const createEmptyBoard = () => [
   ["", "", ""],

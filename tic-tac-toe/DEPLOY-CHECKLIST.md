@@ -12,7 +12,9 @@ This checklist covers deploying the Tic-Tac-Toe game and its Python Worker to pr
 - Cloudflare Dashboard → **Workers & Pages** → **Workers**
 - Select `tic-tac-toe-agent`
 - **Triggers** → **Routes** → **Add route**
-- Route: `www.asifrasool.net/api/tic-tac-toe/*`
+- Routes (add both):
+  - `www.asifrasool.net/api/tic-tac-toe/*`
+  - `asifrasool.net/api/tic-tac-toe/*` (covers apex domain)
 - Failure mode: **Fail closed (block)**
 
 ## 3) Set Pages Environment Variable
