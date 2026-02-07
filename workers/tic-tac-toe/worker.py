@@ -105,6 +105,13 @@ def _pick_move(board, my, opp):
         if len(opp_forks) == 1:
             return opp_forks[0]
 
+        # When the opponent has multiple fork threats (e.g., opposite corners),
+        # the optimal defense is to take a side square to prevent both forks.
+        sides = [(0, 1), (1, 0), (1, 2), (2, 1)]
+        side = _first_available(board, sides)
+        if side is not None:
+            return side
+
         forcing = []
         for (r, c) in _legal_moves(board):
             board[r][c] = my
@@ -113,11 +120,6 @@ def _pick_move(board, my, opp):
             board[r][c] = ""
         if forcing:
             return forcing[0]
-
-        sides = [(0, 1), (1, 0), (1, 2), (2, 1)]
-        side = _first_available(board, sides)
-        if side is not None:
-            return side
 
         return opp_forks[0]
 

@@ -129,7 +129,13 @@ class GameAgent:
                 return opp_forks[0]
 
             # Multiple fork threats:
-            # Try a "forcing" move: create at least one immediate win threat
+            # Prefer a side move first to break opposite-corner forks.
+            sides = [(0, 1), (1, 0), (1, 2), (2, 1)]
+            s = self._first_available(board, sides)
+            if s is not None:
+                return s
+
+            # If no side is available, try a forcing move (create an immediate win threat).
             forcing = []
             for (r, c) in legal:
                 board[r, c] = my
@@ -139,12 +145,6 @@ class GameAgent:
 
             if len(forcing) > 0:
                 return forcing[0]
-
-            # Otherwise, prefer a side (common anti-fork fallback)
-            sides = [(0, 1), (1, 0), (1, 2), (2, 1)]
-            s = self._first_available(board, sides)
-            if s is not None:
-                return s
 
             # Last resort: take one fork square
             return opp_forks[0]
