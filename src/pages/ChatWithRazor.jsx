@@ -42,10 +42,10 @@ function isGreeting(text) {
 function buildLocalFallback(question) {
   const { top } = buildContext(question, 5);
   if (!top.length) {
-    return "I could not reach Gemini and I do not have local info for this yet. Please try again later.";
+    return "I could not reach ChatGPT and I do not have local info for this yet. Please try again later.";
   }
   const summary = top.map((item) => `- ${item.title}: ${item.content}`).join("\n");
-  return `I could not reach Gemini (network or API key issue). Here is what I can share from the on-page sources:\n${summary}`;
+  return `I could not reach ChatGPT (network or API key issue). Here is what I can share from the on-page sources:\n${summary}`;
 }
 
 const suggestedQuestions = [

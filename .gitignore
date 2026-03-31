@@ -182,3 +182,4 @@ cython_debug/
 .cursorindexingignore
 /st.-tammany-hcs
 node_modules/
+src/openAI_API_KEY.json
