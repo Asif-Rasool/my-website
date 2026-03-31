@@ -1,4 +1,4 @@
-const MODEL_NAME = "gpt-5.2-chat-latest";
+const MODEL_NAME = "gpt-4.1-mini";
 const REQUEST_TIMEOUT_MS = 15000;
 
 function normalizeHistory(history) {
