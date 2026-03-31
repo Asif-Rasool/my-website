@@ -8,6 +8,21 @@ const FIR_OUTLET = "New Mexico Taxation and Revenue Department";
 const staticPublications = [
   {
     title:
+      "Temporary Event, Lasting Impact: A Regional Economic Assessment of the Hammond Airshow",
+    citation:
+      "Rasool, A. (2026). *Temporary Event, Lasting Impact: A Regional Economic Assessment of the Hammond Airshow*.",
+    type: "Economic Impact Study",
+    outlet: "Business Research Center, Southeastern Louisiana University",
+    year: 2026,
+    authors: "Asif Rasool",
+    summary:
+      "Regional economic impact analysis of the Hammond Airshow using a parish-level Social Accounting Matrix for Tangipahoa Parish, estimating output, jobs, value added, and tax effects from organizer and non-local visitor spending.",
+    abstract:
+      "This study assesses the economic impact of the Hammond Airshow on the Northshore region using a parish-level Social Accounting Matrix framework for Tangipahoa Parish, Louisiana. Model inputs were constructed from organizer financial statements, observed vendor sales, and attendance estimates inferred from ticket and parking activity. To isolate net new regional activity, the analysis includes only spending by non-local visitors and separates organizer spending from visitor spending to avoid double counting. The results indicate that the Airshow generated approximately $1.55 million in total output, supported 13.36 jobs, produced about $727,078 in value added, and generated an estimated $157,424 in combined tax impacts. Direct effects account for the largest share of each impact measure, while indirect and induced effects extend gains through local supply chains and household spending. The strongest effects are concentrated in performing arts, advertising and public relations, professional services, food service, and lodging. The findings suggest that the Hammond Airshow functions as a service- and tourism-oriented economic engine whose regional contribution is anchored in event operations, visitor spending, and related multiplier effects.",
+    link: "https://selu-hammond-airshow-impact.web.app/",
+  },
+  {
+    title:
       "Heterogeneity in U.S. Farms: A New Clustering by Production Potentials",
     citation:
       "Rasool, A., & Abler, D. (2023). *Heterogeneity in U.S. Farms: A New Clustering by Production Potentials*. Agriculture, 13(2), 258.",
