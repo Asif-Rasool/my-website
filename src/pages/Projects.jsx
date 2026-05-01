@@ -1,6 +1,6 @@
 const projects = [
   {
-    label: "SmartField LA",
+    label: "Deep Learning",
     title: "SmartField LA",
     description:
       "End-to-end system I built for Louisiana strawberry growers: snap a leaf photo, get a Mask R-CNN diagnosis, and see an annotated preview plus a short health report. The goal is simple-help small producers catch disease early and protect yields.",
@@ -9,7 +9,7 @@ const projects = [
     imageAlt: "SmartField LA mobile screenshots showing plant-disease diagnosis workflow",
   },
   {
-    label: "SMB Growth",
+    label: "Machine Learning",
     title: "Marketing Campaign ROI Model",
     description:
       "Budget-allocation tool for small and mid-sized businesses. I organized historical marketing data, built channel-level forecasting logic, and paired it with Lion AI so owners can tweak spend and see ROI forecasts instantly.",
@@ -18,7 +18,7 @@ const projects = [
     imageAlt: "Dashboard view of the marketing campaign ROI modeling tool",
   },
   {
-    label: "Community Impact",
+    label: "I/O Modeling",
     title: "Livingston Parish Library Economic Impact Model",
     description:
       "Hybrid input-output model I led to show the library’s full value. Users plug in budgets and programs to see direct, indirect, and induced effects on jobs, output, and tax revenue, with Lion AI explaining results in plain language.",
@@ -27,7 +27,7 @@ const projects = [
     imageAlt: "Economic impact interface for the Livingston Parish Library project",
   },
   {
-    label: "Energy Forecasting",
+    label: "Machine Learning",
     title: "ThunderHorse Energy Forecasting Model",
     description:
       "Forecasting platform I’m building with Geoffrey Bostwick for Louisiana’s energy sector. It blends econometrics and ML with live market pipelines to deliver forward-looking price and production forecasts, with transparent assumptions users can adjust.",
@@ -36,7 +36,7 @@ const projects = [
     imageAlt: "ThunderHorse dashboard visualizing energy production forecasts",
   },
   {
-    label: "Data Platform",
+    label: "Data Analytics",
     title: "LionIDE",
     description:
       "Interactive analytics platform I built at the Business Research Center to compare economic data across Louisiana parishes, states, and global regions. Designed for public release so students and community partners can explore without barriers.",
