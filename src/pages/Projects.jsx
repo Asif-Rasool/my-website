@@ -20,6 +20,7 @@ const projects = [
   {
     label: "I/O Modeling",
     title: "Livingston Parish Library Economic Impact Model",
+    hidden: true,
     description:
       "Hybrid input-output model I led to show the library’s full value. Users plug in budgets and programs to see direct, indirect, and induced effects on jobs, output, and tax revenue, with Lion AI explaining results in plain language.",
     link: "https://southeastern-livingston-parish-library-prod-391671390696.us-central1.run.app/",
@@ -57,29 +58,31 @@ export default function Projects() {
           </div>
         </div>
         <div className="card-grid card-grid--three">
-          {projects.map((project) => (
-            <article key={project.title} className="elevated-card project-card">
-              <div className="project-card__content">
-                <div className="badge">{project.label}</div>
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
-                <div className="card-actions">
-                  <a
-                    className="badge badge-link"
-                    href={project.link}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={`Open the ${project.title} demo`}
-                  >
-                    View demo
-                  </a>
+          {projects
+            .filter((project) => !project.hidden)
+            .map((project) => (
+              <article key={project.title} className="elevated-card project-card">
+                <div className="project-card__content">
+                  <div className="badge">{project.label}</div>
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+                  <div className="card-actions">
+                    <a
+                      className="badge badge-link"
+                      href={project.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={`Open the ${project.title} demo`}
+                    >
+                      View demo
+                    </a>
+                  </div>
                 </div>
-              </div>
-              <div className="project-card__media">
-                <img src={project.image} alt={project.imageAlt || project.title} loading="lazy" />
-              </div>
-            </article>
-          ))}
+                <div className="project-card__media">
+                  <img src={project.image} alt={project.imageAlt || project.title} loading="lazy" />
+                </div>
+              </article>
+            ))}
         </div>
       </section>
     </div>
