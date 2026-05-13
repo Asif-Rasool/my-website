@@ -60,6 +60,7 @@ const staticPublications = [
     outlet: "Business Research Center, Southeastern Louisiana University",
     year: 2025,
     authors: "Asif Rasool",
+    hidden: true,
     summary:
       "Hybrid input-output and benefit-transfer analysis showing how library programs ripple through jobs, output, tax revenue, and community value.",
     link: "https://southeastern-livingston-parish-library-prod-391671390696.us-central1.run.app/",
@@ -128,9 +129,9 @@ export default function Publications() {
     };
   }, []);
 
-  const orderedPublications = [...staticPublications, ...firPublications].sort(
-    (a, b) => (b.year || 0) - (a.year || 0)
-  );
+  const orderedPublications = [...staticPublications, ...firPublications]
+    .filter((publication) => !publication.hidden)
+    .sort((a, b) => (b.year || 0) - (a.year || 0));
   const years = [
     ...new Set(orderedPublications.map((p) => p.year).filter(Boolean)),
   ].sort((a, b) => b - a);
