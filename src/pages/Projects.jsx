@@ -1,5 +1,15 @@
 const projects = [
   {
+    label: "Knowledge-Based AI",
+    title: "A Knowledge-Based Agent for ARC-AGI",
+    description:
+      "A symbolic AI project where I built an ARC-AGI agent that searches for explanations before making predictions. The agent reads visual structure, retrieves concept families, validates hypotheses, ranks candidates, and uses targeted repairs for fragile cases.",
+    link: "https://asif-rasool.github.io/arc-agi-symbolic-agent/",
+    image: "/ARC-AGI%20Knowledge-Based%20Agent.svg",
+    imageAlt: "Abstract grid-based visual reasoning graphic for the ARC-AGI knowledge-based agent",
+    cta: "View project",
+  },
+  {
     label: "Deep Learning",
     title: "SmartField LA",
     description:
@@ -72,9 +82,9 @@ export default function Projects() {
                       href={project.link}
                       target="_blank"
                       rel="noreferrer"
-                      aria-label={`Open the ${project.title} demo`}
+                      aria-label={`${project.cta || "View demo"}: ${project.title}`}
                     >
-                      View demo
+                      {project.cta || "View demo"}
                     </a>
                   </div>
                 </div>

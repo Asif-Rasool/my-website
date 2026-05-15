@@ -581,6 +581,10 @@ select:focus-visible {
   box-shadow: 0 20px 48px rgba(21, 90, 138, 0.14);
 }
 
+.project-card:hover {
+  transform: none;
+}
+
 .elevated-card h3 {
   margin-top: 0;
   margin-bottom: 12px;
