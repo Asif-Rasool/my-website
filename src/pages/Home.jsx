@@ -30,17 +30,14 @@ export default function Home() {
               at all levels and scales.
             </p>
             <p>
-              I am also passionate about finding ways to apply research in
-              everyday life. In fact, my current projects reflect my ongoing
-              efforts to help communities benefit directly from research. I am
-              an avid advocate for using AI tools. Artificial intelligence has
-              been around for decades, but it is now gaining widespread
-              attention with the rise of generative AI. My current work focuses
-              on helping local stakeholders leverage not only the power of
-              generative AI but also other AI-driven approaches, such as
-              advanced econometrics, statistical modeling, machine learning, and
-              deep learning, all of which fall under the broader field of
-              artificial intelligence.
+              I'm interested in making research more useful in everyday
+              decision-making. My current projects advance that goal by helping
+              communities, organizations, and local stakeholders apply research
+              more directly. I translate data, economic analysis, statistical
+              modeling, and applied research into practical tools for real-world
+              decisions. My aim is to ensure research does more than sit on a
+              shelf; it should help people and organizations address the
+              challenges they face.
             </p>
             <p>
               I am a Research Scientist at Southeastern Louisiana University's
