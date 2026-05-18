@@ -35,9 +35,9 @@ export default function Home() {
               communities, organizations, and local stakeholders apply research
               more directly. I translate data, economic analysis, statistical
               modeling, and applied research into practical tools for real-world
-              decisions. My aim is to ensure research does more than sit on a
-              shelf; it should help people and organizations address the
-              challenges they face.
+              decisions. My aim is to make research accessible beyond journal
+              paywalls and academic jargon, so it can help people and
+              organizations address the challenges they face.
             </p>
             <p>
               I am a Research Scientist at Southeastern Louisiana University's
