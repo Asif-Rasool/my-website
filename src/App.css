@@ -392,8 +392,8 @@ select:focus-visible {
 .intro-content { width: 100%; max-width: none; justify-self: stretch; }
 .intro-content .badge { margin-bottom: 4px; }
 
-/* Justify intro paragraphs for clean edges */
-.intro-content p { text-align: justify; text-justify: inter-word; }
+/* Keep intro body copy left-aligned for natural reading rhythm */
+.intro-content p { text-align: left; text-justify: auto; }
 
 .section-heading h2 {
   margin: 0;
