@@ -14,6 +14,7 @@ const staticPublications = [
     type: "Economic Impact Study",
     outlet: "Business Research Center, Southeastern Louisiana University",
     year: 2026,
+    chronologyOrder: 1,
     authors: "Asif Rasool",
     summary:
       "Regional economic impact analysis of the Hammond Airshow using a parish-level Social Accounting Matrix for Tangipahoa Parish, estimating output, jobs, value added, and tax effects from organizer and non-local visitor spending.",
@@ -29,6 +30,7 @@ const staticPublications = [
     type: "Economic Contribution Study",
     outlet: "Business Research Center, Southeastern Louisiana University",
     year: 2026,
+    chronologyOrder: 2,
     authors: "Asif Rasool",
     summary:
       "Regional Social Accounting Matrix analysis estimating how Southeastern Louisiana University Athletics contributes to Tangipahoa Parish through recurring athletics operations and net-new visitor spending.",
@@ -160,7 +162,11 @@ export default function Publications() {
 
   const orderedPublications = [...staticPublications, ...firPublications]
     .filter((publication) => !publication.hidden)
-    .sort((a, b) => (b.year || 0) - (a.year || 0));
+    .sort(
+      (a, b) =>
+        (b.year || 0) - (a.year || 0) ||
+        (a.chronologyOrder || 0) - (b.chronologyOrder || 0)
+    );
   const years = [
     ...new Set(orderedPublications.map((p) => p.year).filter(Boolean)),
   ].sort((a, b) => b - a);
