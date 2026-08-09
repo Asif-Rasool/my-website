@@ -30,7 +30,6 @@ const projects = [
   {
     label: "I/O Modeling",
     title: "Livingston Parish Library Economic Impact Model",
-    hidden: true,
     description:
       "Hybrid input-output model I led to show the library’s full value. Users plug in budgets and programs to see direct, indirect, and induced effects on jobs, output, and tax revenue, with Lion AI explaining results in plain language.",
     link: "https://southeastern-livingston-parish-library-prod-391671390696.us-central1.run.app/",

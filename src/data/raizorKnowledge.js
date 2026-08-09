@@ -136,6 +136,22 @@ export const knowledgeBase = [
       "Economic impact study for Livingston Parish Library (2025). Mixed-method SAM Input-Output with contingent valuation; estimates 158+ jobs supported, $8.43M total economic output, $6.02M value added, and $2.79M annual intangible benefits with a $1.75 ROI multiplier per public dollar.",
   },
   {
+    id: "publication-selu-athletics",
+    title: "Study: SELU Athletics Economic Contribution",
+    source: "Publications",
+    category: "publications",
+    content:
+      "Economic contribution study for Southeastern Louisiana University Athletics (2026). Regional SAM analysis estimates $16.46M to $19.49M in total output, 150.08 to 178.66 jobs, and $1.29M to $1.73M in tax revenue for Tangipahoa Parish across conservative and moderate visitor-spending cases.",
+  },
+  {
+    id: "publication-st-tammany-hcs",
+    title: "Study: St. Tammany Health System Economic Impact",
+    source: "Publications",
+    category: "publications",
+    content:
+      "Economic impact study for St. Tammany Health System (2025). IMPLAN parish-level SAM analysis estimates 2024 impacts of $896.2M in total output, $552.5M in value added, $392.8M in household earnings, 5,452 jobs, and $107.6M in tax revenue.",
+  },
+  {
     id: "publication-hci",
     title: "HCI Case Study",
     source: "Publications",
