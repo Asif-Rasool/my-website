@@ -27,7 +27,7 @@ const staticPublications = [
       "The Economic Contribution of Southeastern Louisiana University Athletics",
     citation:
       "Rasool, A. (2026). *The Economic Contribution of Southeastern Louisiana University Athletics*. Business Research Center, Southeastern Louisiana University.",
-    type: "Economic Contribution Study",
+    type: "Economic Impact Study",
     outlet: "Business Research Center, Southeastern Louisiana University",
     year: 2026,
     chronologyOrder: 1,
