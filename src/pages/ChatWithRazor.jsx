@@ -45,7 +45,7 @@ function buildLocalFallback(question) {
     return "I could not reach ChatGPT and I do not have local info for this yet. Please try again later.";
   }
   const summary = top.map((item) => `- ${item.title}: ${item.content}`).join("\n");
-  return `I could not reach ChatGPT (network or API key issue). Here is what I can share from the on-page sources:\n${summary}`;
+  return `I could not reach ChatGPT right now. Here is what I can share from the on-page sources:\n${summary}`;
 }
 
 const suggestedQuestions = [
@@ -72,6 +72,8 @@ function buildFollowups(topEntries = []) {
 }
 
 const CHAT_ENDPOINT = (import.meta.env.VITE_CHAT_ENDPOINT || "/chat").trim();
+const CHAT_REQUEST_TIMEOUT_MS = 20000;
+const CHAT_UNAVAILABLE_MESSAGE = "rAIzor's AI backend is temporarily unavailable. Please try again shortly.";
 
 async function callChatApi({ userText, history, contextBlock }) {
   const response = await fetch(CHAT_ENDPOINT, {
@@ -82,28 +84,28 @@ async function callChatApi({ userText, history, contextBlock }) {
       history,
       contextBlock,
     }),
+    signal: AbortSignal.timeout(CHAT_REQUEST_TIMEOUT_MS),
   });
 
   if (!response.ok) {
-    const errorBody = await response.text();
-    throw new Error(`Chat endpoint failed (${response.status}): ${errorBody}`);
+    throw new Error(CHAT_UNAVAILABLE_MESSAGE);
   }
 
   let result;
   try {
     result = await response.json();
   } catch (error) {
-    throw new Error("Chat endpoint returned invalid JSON.");
+    throw new Error(CHAT_UNAVAILABLE_MESSAGE);
   }
 
   if (result?.error) {
-    throw new Error(result.error);
+    throw new Error(CHAT_UNAVAILABLE_MESSAGE);
   }
 
   const output = typeof result?.reply === "string" ? result.reply.trim() : "";
 
   if (!output) {
-    throw new Error("Chat endpoint did not return a reply.");
+    throw new Error(CHAT_UNAVAILABLE_MESSAGE);
   }
 
   return output;
@@ -152,9 +154,8 @@ export default function ChatWithRazor() {
 
       setMessages((prev) => [...prev, { role: "assistant", content: reply, sources: top.map((item) => item.title) }]);
       setFollowups(nextFollowups);
-    } catch (err) {
-      const friendly = err instanceof Error ? err.message : "Something went wrong calling the model.";
-      setError(friendly);
+    } catch {
+      setError(CHAT_UNAVAILABLE_MESSAGE);
       const fallback = buildLocalFallback(question);
       setMessages((prev) => [...prev, { role: "assistant", content: fallback }]);
       setFollowups(nextFollowups.length ? nextFollowups : defaultFollowups);

@@ -1,5 +1,94 @@
 const MODEL_NAME = "gpt-4.1-mini";
 const REQUEST_TIMEOUT_MS = 15000;
+const BACKEND_UNAVAILABLE_MESSAGE = "The AI backend is temporarily unavailable. Please try again shortly.";
+
+// All text limits count UTF-8 bytes, not JavaScript string length or tokens.
+// Current six-entry site context <= 2,104 bytes; five-entry fallback <= 1,799.
+// Allow growth while bounding parsing and the combined dynamic provider input.
+const MAX_BODY_BYTES = 64 * 1024;
+const MAX_MESSAGE_BYTES = 4 * 1024;
+const MAX_HISTORY_ENTRIES = 6;
+const MAX_HISTORY_CONTENT_BYTES = 8 * 1024;
+const MAX_HISTORY_ROLE_BYTES = 32;
+const MAX_CONTEXT_BYTES = 8 * 1024;
+const MAX_INPUT_BYTES = 32 * 1024;
+const encoder = new TextEncoder();
+
+class InputError extends Error {
+  constructor(status, message) {
+    super(message);
+    this.status = status;
+  }
+}
+
+async function readJsonBody(request) {
+  const lengthHeader = request.headers.get("Content-Length");
+  let declaredLength;
+  if (lengthHeader !== null) {
+    if (!/^\d+$/.test(lengthHeader)) {
+      void request.body?.cancel().catch(() => {});
+      throw new InputError(400, "Invalid request body.");
+    }
+    declaredLength = Number(lengthHeader);
+    if (declaredLength > MAX_BODY_BYTES) {
+      void request.body?.cancel().catch(() => {});
+      throw new InputError(413, "Request body is too large.");
+    }
+  }
+
+  if (!request.body) throw new InputError(400, "Invalid JSON body.");
+  const reader = request.body.getReader();
+  const bytes = new Uint8Array(MAX_BODY_BYTES);
+  let size = 0;
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      if (size + value.byteLength > MAX_BODY_BYTES) {
+        // Do not wait for an untrusted source's cancellation promise or read on.
+        void reader.cancel().catch(() => {});
+        throw new InputError(413, "Request body is too large.");
+      }
+      bytes.set(value, size);
+      size += value.byteLength;
+    }
+  } finally {
+    reader.releaseLock();
+  }
+  if (declaredLength !== undefined && declaredLength !== size) {
+    throw new InputError(400, "Request body length does not match Content-Length.");
+  }
+  // Decode only after bounding the complete body; reject malformed UTF-8.
+  return JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(bytes.subarray(0, size)));
+}
+
+function validateInput(body) {
+  const isObject = (value) => value !== null && typeof value === "object" && !Array.isArray(value);
+  const invalid = () => { throw new InputError(400, "Invalid chat request."); };
+  const boundedTextSize = (value, limit) => {
+    if (typeof value !== "string") invalid();
+    const size = encoder.encode(value).byteLength;
+    if (size > limit) throw new InputError(413, "Chat input is too large.");
+    return size;
+  };
+
+  if (!isObject(body)) invalid();
+  // Omitted optional fields retain their previous defaults. Supplied fields
+  // must have the right types; extra metadata (such as sources) stays ignored.
+  const { message, history = [], contextBlock = "" } = body;
+  let inputSize = boundedTextSize(message, MAX_MESSAGE_BYTES);
+  if (!message.trim() || !Array.isArray(history)) invalid();
+  if (history.length > MAX_HISTORY_ENTRIES) throw new InputError(413, "Chat history is too large.");
+  inputSize += boundedTextSize(contextBlock, MAX_CONTEXT_BYTES);
+  for (const item of history) {
+    if (!isObject(item)) invalid();
+    inputSize += boundedTextSize(item.content, MAX_HISTORY_CONTENT_BYTES);
+    // Non-assistant roles still normalize to user; do not permit huge role text.
+    if (item.role !== undefined) boundedTextSize(item.role, MAX_HISTORY_ROLE_BYTES);
+  }
+  if (inputSize > MAX_INPUT_BYTES) throw new InputError(413, "Combined chat input is too large.");
+  return { message: message.trim(), history, contextBlock };
+}
 
 function normalizeHistory(history) {
   if (!Array.isArray(history)) return [];
@@ -49,25 +138,20 @@ export async function onRequestPost(context) {
   const apiKey = env.OPENAI_API_KEY;
 
   if (!apiKey) {
-    return Response.json({ error: "OPENAI_API_KEY is missing in the Cloudflare environment." }, { status: 500 });
+    return Response.json({ error: BACKEND_UNAVAILABLE_MESSAGE }, { status: 500 });
   }
 
-  let body;
+  let input;
   try {
-    body = await request.json();
+    input = validateInput(await readJsonBody(request));
   } catch (error) {
-    return Response.json({ error: "Invalid JSON body." }, { status: 400 });
+    return Response.json(
+      { error: error instanceof InputError ? error.message : "Invalid request body." },
+      { status: error instanceof InputError ? error.status : 400 },
+    );
   }
 
-  const message = typeof body?.message === "string" ? body.message.trim() : "";
-  const history = body?.history ?? [];
-  const contextBlock = typeof body?.contextBlock === "string" ? body.contextBlock : "";
-
-  if (!message) {
-    return Response.json({ error: "The field `message` is required." }, { status: 400 });
-  }
-
-  const payload = buildPayload({ history, message, contextBlock });
+  const payload = buildPayload(input);
   const url = "https://api.openai.com/v1/chat/completions";
 
   try {
@@ -82,9 +166,8 @@ export async function onRequestPost(context) {
     });
 
     if (!response.ok) {
-      const errorBody = await response.text();
       return Response.json(
-        { error: `OpenAI request failed (${response.status}).`, details: errorBody?.slice(0, 2000) ?? "" },
+        { error: BACKEND_UNAVAILABLE_MESSAGE },
         { status: 502 },
       );
     }
@@ -93,7 +176,7 @@ export async function onRequestPost(context) {
     try {
       result = await response.json();
     } catch (error) {
-      return Response.json({ error: "OpenAI returned a non-JSON response." }, { status: 502 });
+      return Response.json({ error: BACKEND_UNAVAILABLE_MESSAGE }, { status: 502 });
     }
 
     const reply = typeof result?.choices?.[0]?.message?.content === "string"
@@ -101,12 +184,11 @@ export async function onRequestPost(context) {
       : "";
 
     if (!reply) {
-      return Response.json({ error: "OpenAI returned an empty response." }, { status: 502 });
+      return Response.json({ error: BACKEND_UNAVAILABLE_MESSAGE }, { status: 502 });
     }
 
     return Response.json({ reply });
-  } catch (error) {
-    const messageText = error instanceof Error ? error.message : "Unexpected error calling OpenAI.";
-    return Response.json({ error: messageText }, { status: 502 });
+  } catch {
+    return Response.json({ error: BACKEND_UNAVAILABLE_MESSAGE }, { status: 502 });
   }
 }
